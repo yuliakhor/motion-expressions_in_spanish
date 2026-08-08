@@ -15,8 +15,9 @@ Results showed that the overall token frequency of motion constructions signific
 * sample_annotated_data.csv
 * **quality_assurance.R:** Documents double-coded study-level variables, including coder-specific labels, agreement status, adjudicated final codes, disagreement types, and resolution notes.
 
-- `agreement_summary.csv`
-Summarizes inter-rater agreement by variable, including the number of coded items, number of agreements and disagreements, percent agreement, Cohen’s kappa, and weighted kappa where applicable.
+[[[[- `agreement_summary.csv`
+Summarizes inter-rater agreement by variable, including the number of coded items, number of agreements and disagreements, percent agreement, Cohen’s kappa, and weighted kappa where applicable.]]]]
 
-  analysis.R : mixed-effects linear modeling
+[[[analysis.R : mixed-effects linear modeling]]]]
+
 ## References

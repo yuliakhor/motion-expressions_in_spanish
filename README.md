@@ -11,9 +11,11 @@ Results showed that the overall token frequency of motion constructions signific
 ## File descriptions
 
 * **annotation_guidelines.pdf:** Lists all coded variables and their definitions.
+* sample_annotated_data.csv
+* **quality_assurance.csv:** Documents double-coded study-level variables, including coder-specific labels, agreement status, adjudicated final codes, disagreement types, and resolution notes.
 
-* **coded_studies.csv:** Shows how primary studies were coded.
+- `agreement_summary.csv`
+Summarizes inter-rater agreement by variable, including the number of coded items, number of agreements and disagreements, percent agreement, Cohen’s kappa, and weighted kappa where applicable.
 
-* **quality_assurance.csv:** Shows how primary studies were coded.
-  
+  analysis.R : mixed-effects linear modeling
 ## References

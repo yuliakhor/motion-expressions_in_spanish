@@ -12,7 +12,7 @@ Results showed that the overall token frequency of motion constructions signific
 
 * **study_design.pdf:** Lists research questions, desribes data collection and analysis methods, presents main results.
 * **annotation_guidelines.pdf:** Lists all coded variables and their definitions.
-* sample_annotated_data.csv
+* **sample_annotated_data.csv:**
 * **quality_assurance.R:** Documents double-coded study-level variables, including coder-specific labels, agreement status, adjudicated final codes, disagreement types, and resolution notes.
 
 [[[[- `agreement_summary.csv`

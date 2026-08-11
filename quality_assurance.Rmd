@@ -112,5 +112,18 @@ disagreements <- qa_with_agreement %>%
     coder2)
 
 disagreements
+
+# ------------------------------------------------------------
+# 8. Confusion matrix
+# ------------------------------------------------------------
+
+confusion_matrix <- qa_with_agreement %>%
+   count(coder1, coder2, name = "n") %>%
+   arrange(coder1, coder2)
+
+confusion_matrix
+
 ```
+
+
 

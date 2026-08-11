@@ -13,11 +13,7 @@ Results showed that the overall token frequency of motion constructions signific
 * **study_design.pdf:** Lists research questions, desribes data collection and analysis methods, presents main results.
 * **annotation_guidelines.pdf:** Lists all coded variables and their definitions.
 * **sample_annotated_data.csv:**
-* **quality_assurance.R:** Documents double-coded study-level variables, including coder-specific labels, agreement status, adjudicated final codes, disagreement types, and resolution notes.
-
-[[[[- `agreement_summary.csv`
-Summarizes inter-rater agreement by variable, including the number of coded items, number of agreements and disagreements, percent agreement, Cohen’s kappa, and weighted kappa where applicable.]]]]
-
-[[[analysis.R : mixed-effects linear modeling]]]]
+* **quality_assurance.R:** The R script evaluates inter-rater reliability between two coders for the syntactic classification of motion constructions. It calculates percent agreement and Cohen’s kappa, identifies disagreement cases, and generates a confusion matrix showing where coder labels diverged.
 
 ## References
+Khoruzhaya, Y. (2024). Motion constructions in L2 Spanish learners' oral production: A longitudinal study. [Unpublished doctoral dissertation]. Pennsylvania State University.

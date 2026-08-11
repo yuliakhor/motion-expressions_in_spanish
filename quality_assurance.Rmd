@@ -1,0 +1,116 @@
+---
+title: "quality_assurance"
+author: "Yulia Khoruzhaya"
+date: "8/8/2026"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+# ------------------------------------------------------------
+# 1. Set working directory
+# ------------------------------------------------------------
+
+setwd(xxxx)
+
+# ------------------------------------------------------------
+# 2. Load libraries
+# ------------------------------------------------------------
+
+library(irr)
+library(dplyr)
+library(tidyverse)
+
+# ------------------------------------------------------------
+# 3. Upload dataset
+# ------------------------------------------------------------
+
+qa_data<- read.csv("bean_coder1_coder2.csv")
+
+# ------------------------------------------------------------
+# 4. Clean coder columns
+# ------------------------------------------------------------
+
+qa_clean <- qa_data %>%
+  mutate(
+    coder1 = as.character(coder1),
+    coder2 = as.character(coder2)
+  ) %>%
+  filter(
+    !is.na(coder1),
+    !is.na(coder2))
+```
+
+
+```{r Inter-rater reliability}
+
+# ------------------------------------------------------------
+# 5. Calculate item-level agreement
+# ------------------------------------------------------------
+
+qa_with_agreement <- qa_clean %>%
+  mutate(
+    agreement = if_else(coder1 == coder2, 1, 0)
+  )
+
+# ------------------------------------------------------------
+# 6. Calculate percent agreement
+# ------------------------------------------------------------
+
+n_items <- nrow(qa_with_agreement) # n = 669
+
+n_agreements <- sum(qa_with_agreement$agreement == 1) # n = 656
+
+n_disagreements <- sum(qa_with_agreement$agreement == 0) # n = 13
+
+percent_agreement <- round((n_agreements / n_items) * 100, 2) #98%
+
+# ------------------------------------------------------------
+# 7. Calculate Cohen's kappa
+# ------------------------------------------------------------
+
+kappa_result <- irr::kappa2(
+  qa_with_agreement %>%
+    select(coder1, coder2),
+  weight = "unweighted")    
+
+cohens_kappa <- round(kappa_result$value, 3) # kappa = 0.95
+
+# ------------------------------------------------------------
+# 8. Create summary table
+# ------------------------------------------------------------
+
+agreement_summary <- tibble(
+  annotation_variable = "coder_label",
+  n_items = n_items,
+  n_agreements = n_agreements,
+  n_disagreements = n_disagreements,
+  percent_agreement = percent_agreement,
+  cohens_kappa = cohens_kappa,
+  interpretation = case_when(
+    cohens_kappa < 0.00 ~ "Poor agreement",
+    cohens_kappa < 0.20 ~ "Slight agreement",
+    cohens_kappa < 0.40 ~ "Fair agreement",
+    cohens_kappa < 0.60 ~ "Moderate agreement",
+    cohens_kappa < 0.80 ~ "Substantial agreement",
+    cohens_kappa <= 1.00 ~ "Almost perfect agreement",
+    TRUE ~ "Check value"))
+
+agreement_summary
+
+# ------------------------------------------------------------
+# 8. Identify disagreement cases
+# ------------------------------------------------------------
+
+disagreements <- qa_with_agreement %>%
+  filter(agreement == 0) %>%
+  select(
+    participant,
+    time,
+    motion.clause,
+    coder1,
+    coder2)
+
+disagreements
+```
+
